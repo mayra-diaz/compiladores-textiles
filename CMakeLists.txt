@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.17)
 project(compiladores_textiles)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
-add_executable(compiladores_textiles main.cpp TOKEN.cpp TOKEN.h Lexer.cpp Lexer.h FirstsAndFollows.cpp FirstsAndFollows.h)
+include_directories(.)
+
+add_executable(compiladores_textiles
+        FirstsAndFollows.cpp
+        FirstsAndFollows.h
+        Lexer.cpp
+        Lexer.h
+        main.cpp
+        TOKEN.cpp
+        TOKEN.h)

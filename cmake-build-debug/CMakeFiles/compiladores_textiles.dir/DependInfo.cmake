@@ -4,15 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mayra/UTEC/2021-0/compiladores-textiles/FirstsAndFollows.cpp" "/home/mayra/UTEC/2021-0/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir/FirstsAndFollows.cpp.o"
-  "/home/mayra/UTEC/2021-0/compiladores-textiles/Lexer.cpp" "/home/mayra/UTEC/2021-0/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir/Lexer.cpp.o"
-  "/home/mayra/UTEC/2021-0/compiladores-textiles/TOKEN.cpp" "/home/mayra/UTEC/2021-0/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir/TOKEN.cpp.o"
-  "/home/mayra/UTEC/2021-0/compiladores-textiles/main.cpp" "/home/mayra/UTEC/2021-0/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir/main.cpp.o"
+  "C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/FirstsAndFollows.cpp" "C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir/FirstsAndFollows.cpp.obj"
+  "C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/Lexer.cpp" "C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir/Lexer.cpp.obj"
+  "C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/TOKEN.cpp" "C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir/TOKEN.cpp.obj"
+  "C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/main.cpp" "C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../."
   )
 
 # Targets to which this target links.
