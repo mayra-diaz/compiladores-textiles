@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mayra/UTEC/2021-0/compiladores-textiles/Lexer.cpp
+Lexer.h
+/home/mayra/UTEC/2021-0/compiladores-textiles/Lexer.h
+
+/home/mayra/UTEC/2021-0/compiladores-textiles/Lexer.h
+stack
+-
+TOKEN.h
+/home/mayra/UTEC/2021-0/compiladores-textiles/TOKEN.h
+
+/home/mayra/UTEC/2021-0/compiladores-textiles/TOKEN.cpp
+TOKEN.h
+/home/mayra/UTEC/2021-0/compiladores-textiles/TOKEN.h
+
+/home/mayra/UTEC/2021-0/compiladores-textiles/TOKEN.h
+string
+-
+
+/home/mayra/UTEC/2021-0/compiladores-textiles/main.cpp
+iostream
+-
+Lexer.h
+/home/mayra/UTEC/2021-0/compiladores-textiles/Lexer.h
+
