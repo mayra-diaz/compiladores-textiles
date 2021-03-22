@@ -1,3 +1,0 @@
-C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/cmake-build-debug/CMakeFiles/compiladores_textiles.dir
-C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/AIO/Documents/UTEC/Compi/compiladores-textiles/cmake-build-debug/CMakeFiles/rebuild_cache.dir
