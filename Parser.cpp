@@ -33,9 +33,9 @@ Table_t Parser::fill_table_MNT(Grammar_t grammar) {
         tabla.push_back(std::vector<std::vector<std::string>>(terminals.size()));
     }
     for (const auto &nter : grammar) {
-        for (auto rule : nter.second) {//cada regla, '|'
+        for (auto rule : nter.second) {//cada regla, '|', rule es un vector
             //rule[0] es al q le revisare los primeros
-            for (const auto &llegada : Firsts[rule[0]]) {
+            for (const auto &llegada : Firsts[rule[0]]) {//llegada es un token
                 //agregar en M[A,a] la regla A --> alpha
                 tabla[getIndexNonTerminal(nter.first)][getIndexTerminal(llegada)] = rule;
             }
