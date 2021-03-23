@@ -36,7 +36,6 @@ public:
 
     using table = std::vector<std::vector<std::vector<std::string>>>;
     std::unordered_map<std::string, std::unordered_set<std::string>> Firsts;
-    std::unordered_map<std::string, std::unordered_set<std::string>> Follows;
 
     table fill_table_MNT(std::unordered_map<std::string, Rule_t> grammar) {
         table tabla;
@@ -52,7 +51,7 @@ public:
         return tabla;
     }
 
-    void analyze_string(std::string w, table tabla, std::string initial, SetString_t terminals, SetString_t non_terminals) {
+    void analyze_string(std::string w, table tabla, std::string initial, SetString_t terminals) {
         std::stack<std::string> stack;
         std::string X;
         std::string a;
