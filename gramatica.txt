@@ -19,6 +19,6 @@ AC2 -> ac2 C1 | ac2 C2 | ac2 C3
 AC3 -> ac3 C1 | ac3 C2 | ac3 C3
 AC4 -> ac4 C4
 C1 -> c1 C2
-C2  -> c2 C4
+C2 -> c2 C4
 C3 -> c3 AF
 C4 -> c4 AF
