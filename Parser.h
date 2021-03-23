@@ -6,6 +6,10 @@
 #include "Lexer.h"
 #include "CFGrammarHandler.h"
 
+using Rule_t = std::vector<std::vector<std::string>>;
+using SetString_t = std::unordered_set<std::string>;
+using MapSets_t = std::unordered_map<std::string, SetString_t>;
+using Grammar_t = std::unordered_map<std::string, Rule_t>;
 using result_t = std::pair<bool, std::string>;
 
 class Parser {
@@ -14,9 +18,9 @@ class Parser {
     std::unordered_map<std::string, int> nter_int;
 public:
     Parser(std::string grammari, std::string terminalsi, std::string non_terminalsi, std::string start){
-        /* CFGrammarHandler handler(std::move(grammari), std::move(terminalsi), std::move(non_terminalsi), std::move(start));
+        CFGrammarHandler handler(std::move(grammari), std::move(terminalsi), std::move(non_terminalsi), std::move(start));
         auto pair = handler.get_firsts_follows();
-        handler.print();*/
+        handler.print();
 
     }
 
@@ -34,7 +38,7 @@ public:
     std::unordered_map<std::string, std::unordered_set<std::string>> Firsts;
     std::unordered_map<std::string, std::unordered_set<std::string>> Follows;
 
-    table fill_table_MNT(std::unordered_map<std::string, Rule> grammar) {
+    table fill_table_MNT(std::unordered_map<std::string, Rule_t> grammar) {
         table tabla;
         for (const auto &nter : grammar) {
             for (auto rule : nter.second) {//cada regla, '|'
@@ -48,7 +52,7 @@ public:
         return tabla;
     }
 
-    void analyze_string(std::string w, table tabla, std::string initial, SetString terminals, SetString non_terminals) {
+    void analyze_string(std::string w, table tabla, std::string initial, SetString_t terminals, SetString_t non_terminals) {
         std::stack<std::string> stack;
         std::string X;
         std::string a;
