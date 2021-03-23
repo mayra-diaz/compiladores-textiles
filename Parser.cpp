@@ -59,7 +59,7 @@ void Parser::analyze_string(std::string w) {
             ip++;
         } else if (terminals.find(X) != terminals.end()) {
             throw "ERROR";
-        } else if (tabla[getIndexNonTerminal(X)][getIndexTerminal(a)].empty()) {
+        } else if (tabla[getIndexNonTerminal(X)][getIndexTerminal(a)].empty() || tabla[getIndexNonTerminal(X)][getIndexTerminal(a)].size() > 1) {
             throw "ERROR";
         } else if (!tabla[getIndexNonTerminal(X)][getIndexTerminal(a)].empty()) {
             auto rule = tabla[getIndexNonTerminal(X)][getIndexTerminal(a)];
