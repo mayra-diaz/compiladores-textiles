@@ -34,7 +34,7 @@ public:
     std::unordered_map<std::string, std::unordered_set<std::string>> Firsts;
     std::unordered_map<std::string, std::unordered_set<std::string>> Follows;
 
-    table fill_table_MNT(std::unordered_map<std::string, Rule> grammar) {
+    table fill_table_MNT(std::unordered_map<std::string, Rule_t> grammar) {
         table tabla;
         for (const auto &nter : grammar) {
             for (auto rule : nter.second) {//cada regla, '|'
@@ -48,7 +48,7 @@ public:
         return tabla;
     }
 
-    void analyze_string(std::string w, table tabla, std::string initial, SetString terminals, SetString non_terminals) {
+    void analyze_string(std::string w, table tabla, std::string initial, SetString_t terminals) {
         std::stack<std::string> stack;
         std::string X;
         std::string a;
