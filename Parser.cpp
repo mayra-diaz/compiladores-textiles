@@ -30,7 +30,7 @@ int Parser::getIndexTerminal(std::string ter) {
 
 Table_t Parser::fill_table_MNT(Grammar_t grammar) {
     for(int i = 0; i < non_terminals.size(); ++i){
-        tabla.push_back(std::vector<std::vector<std::string>>());
+        tabla.push_back(std::vector<std::vector<std::string>>(terminals.size()));
     }
     for (const auto &nter : grammar) {
         for (auto rule : nter.second) {//cada regla, '|'
