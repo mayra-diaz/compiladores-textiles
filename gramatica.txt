@@ -134,3 +134,6 @@ C1 ::= c2 C2
 C2 ::= c4 C4
 C3 ::= a
 C4 ::= a
+
+
+ASh1Sv3N5Ac4C4A

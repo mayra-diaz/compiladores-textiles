@@ -31,7 +31,7 @@ class Parser {
 public:
     Parser(std::string grammari, std::string terminalsi, std::string non_terminalsi, std::string start);
 
-    //void analyze_string(std::string w);
+    void analyze_string(const std::string &w);
     result_t lexeme(std::string input);
 
     void print_grammar_info();

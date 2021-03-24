@@ -6,6 +6,7 @@ Parser::Parser(std::string grammari, std::string terminalsi, std::string non_ter
         handler(std::move(grammari), std::move(terminalsi), std::move(non_terminalsi), std::move(start)) {
     initialize();
     fill_table_MNT();
+    analyze_string("a sh1 sv3 n5 ac4 c4 a");
     //print_LL_table();
     //handler.print();
 }
@@ -48,41 +49,57 @@ void Parser::fill_table_MNT() {
         }
     }
     std::cout << "________________________\n";
-    for(int i = 0; i < handler.non_terminals.size(); ++i){
+    for (int i = 0; i < handler.non_terminals.size(); ++i) {
         std::cout << i << " ::= " << int_nter[i] << "\n";
     }
-    for(int i = 0; i < handler.terminals.size(); ++i){
+    for (int i = 0; i < handler.terminals.size(); ++i) {
         std::cout << i << " = " << int_ter[i] << "\n";
     }
 }
+std::vector<std::string> split_string(const std::string &w){
+    std::string curr = "";
+    std::vector<std::string> split;
+    for (int i = 0; i < w.size(); ++i) {
+        if(w[i] == ' ') {
+            split.push_back(curr);
+            curr = "";
+        }
+        if(w[i] != ' ')
+            curr += w[i];
+    }
+    split.push_back(curr);
+    return split;
+}
 
-/*
-void Parser::analyze_string(std::string w) {
+void Parser::analyze_string(const std::string &ws) {
+    std::vector<std::string> w = split_string(ws);
     std::stack<std::string> stack;
     std::string X;
     std::string a;
     int ip = 0;
-    w += "$";
+    w.push_back("$");
     stack.push("$");
     stack.push(handler.initial);
+    X = stack.top();
     while (X != "$") {
-        X = stack.top();
         a = w[ip];
         if (X == a) {
             stack.pop();
             ip++;
-        } else if (handler.terminals.find(get_cfg_element_id(X)) != handler.terminals.end()) {
-            throw "ERROR";
-        } else if (tabla[get_cfg_element_id(X)][get_cfg_element_id(a)].empty()) {
-            throw "ERROR";
-        } else if (!tabla[get_cfg_element_id(X)][get_cfg_element_id(a)].empty()) {
-            auto rule = tabla[get_cfg_element_id(X)][get_cfg_element_id(a)];
+        } else if (handler.terminals.find(X) != handler.terminals.end()) {
+            throw "TERMINAL ERROR";
+        } else if (tabla[nter_int[X]][ter_int[a]].empty()) {
+            throw "ERROR NO HAY PRODUCCION";
+        } else if (!tabla[nter_int[X]][ter_int[a]].empty()) {
+            auto rule = tabla[nter_int[X]][ter_int[a]];
             stack.pop();
             for (int i = rule.size() - 1; i >= 0; --i)
-                stack.push(get_cfg_element_name(rule[i].id, rule[i].is_ter));
+                stack.push(rule[i]);
         }
+        X = stack.top();
+
     }
-}*/
+}
 
 result_t Parser::lexeme(std::string input) {
     Lexer lexer(input);
@@ -95,9 +112,9 @@ void Parser::print_grammar_info() {
 }
 
 
-void Parser::print_LL_table(){
+void Parser::print_LL_table() {
     std::cout << "     \n        ";
-    for (int j  = 0; j < tabla[0].size(); ++j)
+    for (int j = 0; j < tabla[0].size(); ++j)
         std::cout << int_ter[j] << " ";
     std::cout << '\n';
     for (int i = 0; i < tabla.size(); ++i) {
