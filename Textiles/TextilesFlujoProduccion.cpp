@@ -15,12 +15,57 @@ void TextilesFlujoProduccion(){
     std::string terminals = "a sh1 sh2 sh3 sh4 sh5 sv1 sv2 sv3 sv4 sv5 n1 n2 n3 n4 n5 ac1 ac2 ac3 ac4 c1 c2 c3 c4";
     std::string non_terminals = "S A SH1 SH2 SH3 SH4 SH5 SV1 SV2 SV3 SV4 SV5 N1 N2 N3 N4 N5 AC1 AC2 AC3 AC4 C1 C2 C3 C4";
     Parser parser(grammar_s, terminals, non_terminals, "S");
-    std::string lexeme;
-    std::cout << "Para terminar el programa ingrese -1 \nIngrese un flujo para analizar: \n";
-    getline(std::cin, lexeme);
-    do {
-        parser.analyze_lexeme(lexeme);
-        std::cout << "Para terminar el programa ingrese -1 \nIngrese un flujo para analizar: \n";
-        getline(std::cin, lexeme);
-    } while (lexeme != "-1");
+    int option = print_menu();
+    while (option!=0){
+        switch (option) {
+            case 1:
+                parser.print_grammar_info();
+            case 2:
+                parser.print_LL_table();
+            case 3: {
+                std::string lexeme;
+                std::cout << "Para terminar la verificación de flujo ingrese -1 \nIngrese un flujo para analizar: \n";
+                std::cin.ignore();
+                getline(std::cin, lexeme);
+                do {
+                    parser.analyze_lexeme(lexeme);
+                    std::cout << "Para terminar la verificación de flujo ingrese -1 \nIngrese un flujo para analizar: \n";
+                    getline(std::cin, lexeme);
+                } while (lexeme != "-1");
+            }
+            case 4:{
+                std::string lexeme;
+                std::cout << "Para terminar la verificación léxica ingrese -1 \nIngrese un flujo para analizar: \n";
+                std::cin.ignore();
+                getline(std::cin, lexeme);
+                do {
+                    parser.analyze_tokens(lexeme);
+                    std::cout << "Para terminar la verificación léxica ingrese -1 \nIngrese un flujo para analizar: \n";
+                    getline(std::cin, lexeme);
+                } while (lexeme != "-1");
+            }
+            default:
+                break;
+        }
+        option = print_menu();
+    }
+}
+
+int print_menu(){
+    int option;
+    std::cout << "Bienvenido al analizador de flujo de producción de textiles.\n Por favor ingrese "
+                 "el número de la opción que desea realizar. \n"
+                 "1. Información sobre la gramática.\n"
+                 "2. Ver la tabla LL.\n"
+                 "3. Verificar un flujo.\n"
+                 "4. Revisar los errores léxicos.\n"
+                 "Para terminar el programa ingrese 0.\n";
+    std::cin >> option;
+    std::cout << '\n';
+    while (option > 4) {
+        std::cout << "Por favor ingrese una opción válida.\n";
+        std::cin >> option;
+        std::cout << '\n';
+    }
+    return option;
 }

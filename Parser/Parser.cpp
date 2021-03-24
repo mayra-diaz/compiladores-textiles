@@ -64,7 +64,7 @@ std::vector<string_t> split_string(const string_t &w) {
     return split;
 }
 
-void print_stack(std::stack<string_t> stack) {
+void Parser::print_stack(std::stack<string_t> stack) {
     std::stack<string_t> temp;
     while (!stack.empty()) {
         temp.push(stack.top());
@@ -76,12 +76,12 @@ void print_stack(std::stack<string_t> stack) {
     }
 }
 
-void print_input(std::vector<string_t> input, int ip) {
+void Parser::print_input(std::vector<string_t> input, int ip) {
     while (ip < input.size())
         std::cout << input[ip++] << " ";
 }
 
-void print_input(VToken_t input, int ip) {
+void Parser::print_input(VToken_t input, int ip) {
     for (int i = ip; i < input.size(); ++i) {
         std::cout << input[i].id << ' ';
     }
@@ -93,7 +93,7 @@ void Parser::analyze_string(const string_t &ws) {
     std::string X;
     std::string a;
     int ip = 0;
-    w.push_back("$");
+    w.emplace_back("$");
     stack.push("$");
     stack.push(handler.initial);
     X = stack.top();
@@ -140,6 +140,13 @@ void Parser::analyze_string(const string_t &ws) {
     }
     std::cout << "$\t\t\t$\n";
     std::cout << "\t\tACCEPTED";
+}
+
+void Parser::analyze_tokens(string_t input){
+    Lexer lexer(std::move(input));
+    for (auto& token: lexer.get_tokens())
+        std::cout << token << '\t';
+    std::cout << '\n';
 }
 
 result_t Parser::analyze_lexeme(string_t input) {

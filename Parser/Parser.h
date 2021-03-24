@@ -34,8 +34,13 @@ public:
     void analyze_string(const string_t&w);
     result_t analyze_lexeme(string_t input);
 
+    void analyze_tokens(string_t input);
     void print_grammar_info();
     void print_LL_table();
+
+    static void print_stack(std::stack<string_t> stack);
+    static void print_input(std::vector<string_t> input, int ip);
+    static void print_input(VToken_t input, int ip);
 };
 
 
