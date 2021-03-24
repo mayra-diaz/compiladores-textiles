@@ -6,7 +6,7 @@ int yyerror(char *s);
 
 %}
 
-%token a sh1 sh2 sh3 sh4 sh5 sv1 sv2 sv3 sv4 sv5 n1 n2 n3 n4 n5 ac1 ac2 ac3 ac4 c1 c2 c3 c4
+%token a sh1 sh2 sh3 sh4 sh5 sv1 sv2 sv3 sv4 sv5 n1 n2 n3 n4 n5 ac1 ac2 ac3 ac4 c1 c2 c3 c4 af
 
 %%
 
@@ -142,11 +142,11 @@ C2:
 ;
 
 C3: 
-	| a
+	| af
 ;
 
 C4:
-    	| a
+    	| af
 ;
 
 %%

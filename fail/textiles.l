@@ -35,9 +35,11 @@ c4		    "C4"
 
 %%
 
-[ \t\r\n]+  {}
-
-{a}		    {++etapas; return a;}
+{a}		    {   ++etapas; 
+                if (etapas > 1)
+                    return a;
+                return af;
+            }
 
 {sh1}       {++etapas; return sh1;}
 {sh2}       {++etapas; return sh2;}
@@ -66,6 +68,8 @@ c4		    "C4"
 {c2}        {++etapas; return c2;}
 {c3}        {++etapas; return c3;}
 {c4}        {++etapas; return c4;}	
+
+[ \t\r\n]+  {}
 
 .           {perror("invalid character");}
 

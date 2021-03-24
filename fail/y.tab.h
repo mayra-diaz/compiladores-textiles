@@ -72,7 +72,8 @@ extern int yydebug;
     c1 = 278,
     c2 = 279,
     c3 = 280,
-    c4 = 281
+    c4 = 281,
+    af = 282
   };
 #endif
 /* Tokens.  */
@@ -100,6 +101,7 @@ extern int yydebug;
 #define c2 279
 #define c3 280
 #define c4 281
+#define af 282
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

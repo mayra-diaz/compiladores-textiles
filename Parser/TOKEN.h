@@ -2,20 +2,22 @@
 #define COMPILADORES_TEXTILES_TOKEN_H
 
 #include <string>
+#include <iostream>
 
 struct TOKEN {
     enum Type {
-        A, SH, SV, N, AC, C, ERROR
+        A, SH, SV, N, AC, C, ERROR, $
     };
     Type type;
-    int num=0;
-    std::string name;
+    std::string id;
+    std::string description;
 
-    TOKEN(Type type, int n);
-    TOKEN(Type type, std::string e);
+    TOKEN(Type type, std::string id);
+    TOKEN(Type type, std::string id, std::string e);
+    std::ostream& operator << (std::ostream& os);
 
 private:
-    std::string get_name() const;
+    std::string get_description() const;
 };
 
 

@@ -1,15 +1,17 @@
 #ifndef COMPILADORES_TEXTILES_LEXER_H
 #define COMPILADORES_TEXTILES_LEXER_H
 
-#include <stack>
+#include <vector>
 #include "TOKEN.h"
 
+using VToken_t = std::vector<TOKEN>;
+
 class Lexer {
-    std::stack<TOKEN> tokens;
+    VToken_t tokens;
 public:
     explicit Lexer(std::string input);
 
-    std::stack<TOKEN> get_tokens();
+    VToken_t get_tokens();
 };
 
 

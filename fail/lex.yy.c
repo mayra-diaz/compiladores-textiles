@@ -362,10 +362,10 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[39] =
     {   0,
-        0,    0,   28,   26,    1,    1,    2,   26,   26,   26,
-        1,    0,   22,   23,   24,   25,   13,   14,   15,   16,
-       17,    0,    0,   18,   19,   20,   21,    3,    4,    5,
-        6,    7,    8,    9,   10,   11,   12,    0
+        0,    0,   28,   26,   25,   25,    1,   26,   26,   26,
+       25,    0,   21,   22,   23,   24,   12,   13,   14,   15,
+       16,    0,    0,   17,   18,   19,   20,    2,    3,    4,
+        5,    6,    7,    8,    9,   10,   11,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -741,142 +741,146 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-/* rule 1 can match eol */
 YY_RULE_SETUP
 #line 38 "textiles.l"
-{}
+{   ++etapas; 
+                if (etapas > 1)
+                    return a;
+                return af;
+            }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 40 "textiles.l"
-{++etapas; return a;}
+#line 44 "textiles.l"
+{++etapas; return sh1;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 42 "textiles.l"
-{++etapas; return sh1;}
+#line 45 "textiles.l"
+{++etapas; return sh2;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 43 "textiles.l"
-{++etapas; return sh2;}
+#line 46 "textiles.l"
+{++etapas; return sh3;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 44 "textiles.l"
-{++etapas; return sh3;}
+#line 47 "textiles.l"
+{++etapas; return sh4;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 45 "textiles.l"
-{++etapas; return sh4;}
+#line 48 "textiles.l"
+{++etapas; return sh5;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 46 "textiles.l"
-{++etapas; return sh5;}
+#line 50 "textiles.l"
+{++etapas; return sv1;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 48 "textiles.l"
-{++etapas; return sv1;}
+#line 51 "textiles.l"
+{++etapas; return sv2;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 49 "textiles.l"
-{++etapas; return sv2;}
+#line 52 "textiles.l"
+{++etapas; return sv3;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 50 "textiles.l"
-{++etapas; return sv3;}
+#line 53 "textiles.l"
+{++etapas; return sv4;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 51 "textiles.l"
-{++etapas; return sv4;}
+#line 54 "textiles.l"
+{++etapas; return sv5;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 52 "textiles.l"
-{++etapas; return sv5;}
+#line 56 "textiles.l"
+{++etapas; return n1;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 54 "textiles.l"
-{++etapas; return n1;}
+#line 57 "textiles.l"
+{++etapas; return n2;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 55 "textiles.l"
-{++etapas; return n2;}
+#line 58 "textiles.l"
+{++etapas; return n3;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 56 "textiles.l"
-{++etapas; return n3;}
+#line 59 "textiles.l"
+{++etapas; return n4;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 57 "textiles.l"
-{++etapas; return n4;}
+#line 60 "textiles.l"
+{++etapas; return n5;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 58 "textiles.l"
-{++etapas; return n5;}
+#line 62 "textiles.l"
+{++etapas; return ac1;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 60 "textiles.l"
-{++etapas; return ac1;}
+#line 63 "textiles.l"
+{++etapas; return ac2;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 61 "textiles.l"
-{++etapas; return ac2;}
+#line 64 "textiles.l"
+{++etapas; return ac3;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 62 "textiles.l"
-{++etapas; return ac3;}
+#line 65 "textiles.l"
+{++etapas; return ac4;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 63 "textiles.l"
-{++etapas; return ac4;}
+#line 67 "textiles.l"
+{++etapas; return c1;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 65 "textiles.l"
-{++etapas; return c1;}
+#line 68 "textiles.l"
+{++etapas; return c2;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 66 "textiles.l"
-{++etapas; return c2;}
+#line 69 "textiles.l"
+{++etapas; return c3;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 67 "textiles.l"
-{++etapas; return c3;}
+#line 70 "textiles.l"
+{++etapas; return c4;}	
 	YY_BREAK
 case 25:
+/* rule 25 can match eol */
 YY_RULE_SETUP
-#line 68 "textiles.l"
-{++etapas; return c4;}	
+#line 72 "textiles.l"
+{}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 70 "textiles.l"
+#line 74 "textiles.l"
 {perror("invalid character");}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 72 "textiles.l"
+#line 76 "textiles.l"
 ECHO;
 	YY_BREAK
-#line 880 "lex.yy.c"
+#line 884 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1881,7 +1885,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 72 "textiles.l"
+#line 76 "textiles.l"
 
 
 int yywrap(void){

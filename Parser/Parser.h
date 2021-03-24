@@ -2,6 +2,7 @@
 #define COMPILADORES_TEXTILES_PARSER_H
 
 #include <utility>
+#include <stack>
 
 #include "Lexer.h"
 #include "../CFGHandler/CFGHandler.h"
@@ -10,10 +11,8 @@ using Table_t = std::vector<std::vector<Production_t>>;
 using result_t = std::pair<bool, std::string>;
 
 class Parser {
-    std::stack<TOKEN> tokens;
     CFGHandler handler;
-
-    Table_t tabla;
+    Table_t table;
 
     void fill_table_MNT();
 
