@@ -115,11 +115,10 @@ void Parser::analyze_string(const string_t &ws) {
             std::cerr << "TERMINAL ERROR";
             return;
         } else if (table[nter_int[X]][ter_int[a]].empty()) {
-            if(a == "$" || handler.Follows.find(a) != handler.Follows.end()) {
+            if (a == "$" || handler.Follows.find(a) != handler.Follows.end()) {
                 stack.pop();
                 std::cout << "extraer ( error )\n";
-            }
-            else {
+            } else {
                 ip++;
                 std::cout << "explorar ( error )\n";
             }
@@ -142,9 +141,9 @@ void Parser::analyze_string(const string_t &ws) {
     std::cout << "\t\tACCEPTED";
 }
 
-void Parser::analyze_tokens(string_t input){
+void Parser::analyze_tokens(string_t input) {
     Lexer lexer(std::move(input));
-    for (auto& token: lexer.get_tokens())
+    for (auto &token: lexer.get_tokens())
         std::cout << token << '\t';
     std::cout << '\n';
 }
@@ -154,7 +153,7 @@ result_t Parser::analyze_lexeme(string_t input) {
     auto tokens = lexer.get_tokens();
     std::stack<string_t> stack;
     string_t X, a;
-    bool fatal_error = tokens[0].type == TOKEN::Type::FATAL_ERROR, error= false;
+    bool fatal_error = tokens[0].type == TOKEN::Type::FATAL_ERROR, error = false;
     int ip = fatal_error ? 1 : 0;
     tokens.emplace_back(TOKEN::Type::$, "$", "ACCEPTED");
     stack.push("$");
@@ -170,28 +169,24 @@ result_t Parser::analyze_lexeme(string_t input) {
         print_input(tokens, ip);
         std::cout << "\t\t\t\t\t\t\t\t";
         a = tokens[ip].id;
-        if (tokens[ip].type == TOKEN::Type::ERROR){
+        if (tokens[ip].type == TOKEN::Type::ERROR) {
             std::cout << "error ( " << tokens[ip].description << " )\n";
             error = true;
             ++ip;
-        }
-        else if (tokens[ip].type == TOKEN::Type::FATAL_ERROR){
+        } else if (tokens[ip].type == TOKEN::Type::FATAL_ERROR) {
             std::cout << "explorar ( " << tokens[ip].description << " )\n";
             fatal_error = true;
             ++ip;
-        }
-        else if (X == a) {
+        } else if (X == a) {
             stack.pop();
             ip++;
             std::cout << "matching ( " << a << " )\n";
-        }
-        else if (table[nter_int[X]][ter_int[a]].empty()) {
-            if(a == "$" || handler.Follows.find(a) != handler.Follows.end()) {
+        } else if (table[nter_int[X]][ter_int[a]].empty()) {
+            if (a == "$" || handler.Follows.find(a) != handler.Follows.end()) {
                 stack.pop();
                 fatal_error = true;
                 std::cout << "extraer ( error )\n";
-            }
-            else {
+            } else {
                 ip++;
                 fatal_error = true;
                 std::cout << "explorar ( error )\n";
@@ -216,11 +211,12 @@ result_t Parser::analyze_lexeme(string_t input) {
             acceptance += ": " + tokens[0].description;
         else
             acceptance += ": Syntax error";
-    }
-    else
+    } else
         acceptance = error ? "ACCEPTED WITH ERRORS, Lexical Error" : "ACCEPTED";
+    if (ip != tokens.size())
+        acceptance += ", unnecessary tokens";
     std::cout << "\t\t\t\t\t\t\t" << acceptance << "\n\n";
-    return result_t {fatal_error, acceptance};
+    return result_t{fatal_error, acceptance};
 }
 
 void Parser::print_grammar_info() {
