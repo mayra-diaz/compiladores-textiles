@@ -19,20 +19,19 @@
 #include <iostream>
 
 using identifier_t = std::string;
-using name_t = std::string;
-
 struct Element_t{
     identifier_t id;
     bool is_ter;
 };
 
-using Map_Int_String_t = std::unordered_map<identifier_t , name_t>;
-using Map_String_Int_t = std::unordered_map<name_t , identifier_t>;
+using Map_Int_String_t = std::unordered_map<int , std::string>;
+using Map_String_Int_t = std::unordered_map<std::string, int>;
 
 using Production_t = std::vector<identifier_t>;
 using Rule_t = std::vector<Production_t>;
-using SetInt_t = std::unordered_set<identifier_t>;
-using MapSets_t = std::unordered_map<identifier_t , SetInt_t>;
+using SetS_t = std::unordered_set<identifier_t>;
+using SetInt_t = std::unordered_set<int>;
+using MapSets_t = std::unordered_map<identifier_t , SetS_t>;
 using Grammar_t = std::unordered_map<identifier_t , Rule_t>;
 
 class Parser;
@@ -40,8 +39,8 @@ class Parser;
 class CFGHandler {
     Grammar_t grammar;
 
-    SetInt_t terminals;
-    SetInt_t non_terminals;
+    SetS_t terminals;
+    SetS_t non_terminals;
 
     MapSets_t Firsts{}, Follows{};
 
@@ -56,10 +55,10 @@ public:
     inline Grammar_t get_grammar(){
         return grammar;
     };
-    inline SetInt_t get_terminals(){
+    inline SetS_t get_terminals(){
         return terminals;
     };
-    inline SetInt_t get_non_terminals(){
+    inline SetS_t get_non_terminals(){
         return non_terminals;
     };
     inline std::pair<MapSets_t, MapSets_t> get_firsts_follows() {

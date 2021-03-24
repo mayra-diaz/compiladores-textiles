@@ -15,15 +15,18 @@ class Parser {
 
     Table_t tabla;
 
-   // void fill_table_MNT();
-    SetInt_t get_First(identifier_t element);
+    void fill_table_MNT();
 
-    inline name_t get_cfg_element_name(identifier_t e, bool is_ter){
-        return "handler.get_element_name(e, is_ter)";
-    };
-    inline identifier_t get_cfg_element_id(name_t e) {
-        return "handler.get_element_id(e)";
-    };
+    SetS_t get_First(identifier_t element);
+
+
+
+    Map_String_Int_t nter_int;
+    Map_Int_String_t int_nter;
+    Map_String_Int_t ter_int;
+    Map_Int_String_t int_ter;
+
+    void initialize();
 
 public:
     Parser(std::string grammari, std::string terminalsi, std::string non_terminalsi, std::string start);
@@ -32,7 +35,7 @@ public:
     result_t lexeme(std::string input);
 
     void print_grammar_info();
-    //void print_LL_table();
+    void print_LL_table();
 };
 
 

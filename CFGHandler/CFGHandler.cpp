@@ -39,7 +39,7 @@ void CFGHandler::read_grammar(std::string grammari) {
 
 void CFGHandler::read_elements(std::string elementsi, bool is_ter){
     int i=0;
-    SetInt_t *elements;
+    SetS_t *elements;
     if (is_ter)
         elements = &terminals;
     else
@@ -59,9 +59,9 @@ void CFGHandler::read_elements(std::string elementsi, bool is_ter){
 
 void CFGHandler::generate_firsts_follows(){
     for (const auto& nterminal: non_terminals)
-        Firsts.insert({nterminal, SetInt_t()});
+        Firsts.insert({nterminal, SetS_t()});
     for (const auto& nterminal: non_terminals)
-        Follows.insert({nterminal, SetInt_t()});
+        Follows.insert({nterminal, SetS_t()});
     Follows[initial].insert("$");
 
     int changes = 1;

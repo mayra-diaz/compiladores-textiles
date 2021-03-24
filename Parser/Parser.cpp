@@ -2,35 +2,61 @@
 
 #include <utility>
 
-Parser::Parser(std::string grammari, std::string terminalsi, std::string non_terminalsi, std::string start):
-                            handler(std::move(grammari), std::move(terminalsi), std::move(non_terminalsi), std::move(start)){
-    /*fill_table_MNT();
-    print_LL_table();*/
-    handler.print();
+Parser::Parser(std::string grammari, std::string terminalsi, std::string non_terminalsi, std::string start) :
+        handler(std::move(grammari), std::move(terminalsi), std::move(non_terminalsi), std::move(start)) {
+    initialize();
+    fill_table_MNT();
+    //print_LL_table();
+    //handler.print();
 }
 
-SetInt_t Parser::get_First(identifier_t element) {
+
+void Parser::initialize() {
+    for (int i = 0; i < handler.non_terminals.size(); ++i) {
+        tabla.push_back(std::vector<Production_t>(handler.terminals.size()));
+    }
+    int c = 0;
+    for (auto nter: handler.non_terminals) {
+        nter_int.insert({nter, c});
+        int_nter.insert({c++, nter});
+    }
+    c = 0;
+    for (auto ter: handler.terminals) {
+        ter_int.insert({ter, c});
+        int_ter.insert({c++, ter});
+    }
+}
+
+SetS_t Parser::get_First(identifier_t element) {
     if (handler.terminals.find(element) != handler.terminals.end())
-        return SetInt_t {element};
+        return SetS_t{element};
     return handler.Firsts[element];
 }
 
-/*
 void Parser::fill_table_MNT() {
-    for(int i = 0; i < handler.non_terminals.size(); ++i){
-        tabla.push_back(std::vector<Production_t>(handler.terminals.size()));
-    }
-    for (const auto &nter : handler.grammar) {
+    for (auto nter : handler.grammar) {
         for (auto production : nter.second) {//cada regla, '|', rule es un vector
             //rule[0] es al q le revisare los primeros
-            for (const auto &first : get_First(production[0])) {//llegada es un token
+            auto first_conj = get_First(production[0]);
+            for (const auto &first : first_conj) {//llegada es un token
                 //agregar en M[A,a] la regla A --> alpha
-                tabla[nter.first][first] = production;
+                int x = nter_int[nter.first];
+                int y = ter_int[first];
+                std::vector<std::string> copia = production;
+                tabla[x][y] = copia;
             }
         }
     }
+    std::cout << "________________________\n";
+    for(int i = 0; i < handler.non_terminals.size(); ++i){
+        std::cout << i << " ::= " << int_nter[i] << "\n";
+    }
+    for(int i = 0; i < handler.terminals.size(); ++i){
+        std::cout << i << " = " << int_ter[i] << "\n";
+    }
 }
 
+/*
 void Parser::analyze_string(std::string w) {
     std::stack<std::string> stack;
     std::string X;
@@ -61,26 +87,26 @@ void Parser::analyze_string(std::string w) {
 result_t Parser::lexeme(std::string input) {
     Lexer lexer(input);
     tokens = lexer.get_tokens();
-    return result_t ();
+    return result_t();
 }
 
-void Parser::print_grammar_info(){
+void Parser::print_grammar_info() {
     handler.print();
 }
 
-/*
+
 void Parser::print_LL_table(){
     std::cout << "     \n        ";
-    for (auto ter: handler.terminals)
-        std::cout << ter << "  ";
+    for (int j  = 0; j < tabla[0].size(); ++j)
+        std::cout << int_ter[j] << " ";
     std::cout << '\n';
     for (int i = 0; i < tabla.size(); ++i) {
-        std::cout << get_cfg_element_name(i, false) << ":  ";
+        std::cout << int_nter[i] << ":  ";
         for (int j = 0; j < tabla[0].size(); ++j) {
             for (auto p: tabla[i][j])
-                std::cout << get_cfg_element_name(p.id, p.is_ter) << " ";
-            std::cout << '\n';
+                std::cout << p << " ";
         }
+        std::cout << "\n";
     }
-}*/
+}
 
