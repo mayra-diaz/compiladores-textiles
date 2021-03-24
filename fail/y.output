@@ -1,0 +1,1231 @@
+Rules useless in parser due to conflicts
+
+    3 S: %empty
+
+
+State 0 conflicts: 1 reduce/reduce
+
+
+Grammar
+
+    0 $accept: I $end
+
+    1 I: %empty
+    2  | S
+
+    3 S: %empty
+    4  | a A
+
+    5 A: sh1 SH1
+    6  | sh2 SH2
+    7  | sh3 SH3
+    8  | sh4 SH4
+    9  | sh5 SH5
+
+   10 SH1: sv1 SV1
+   11    | sv2 SV2
+   12    | sv3 SV3
+
+   13 SH2: sv1 SV1
+   14    | sv2 SV2
+
+   15 SH3: sv1 SV1
+   16    | sv2 SV2
+   17    | sv3 SV3
+
+   18 SH4: sv3 SV3
+   19    | sv4 SV4
+   20    | sv5 SV5
+
+   21 SH5: sv3 SV3
+   22    | sv5 SV5
+
+   23 SV1: n1 N1
+   24    | n2 N2
+   25    | n3 N3
+
+   26 SV2: n1 N1
+   27    | n2 N2
+   28    | n3 N3
+
+   29 SV3: n4 N4
+   30    | n5 N5
+
+   31 SV4: n4 N4
+   32    | n5 N5
+
+   33 SV5: %empty
+   34    | n5 N5
+
+   35 N1: ac1 AC1
+   36   | ac2 AC2
+
+   37 N2: ac1 AC1
+   38   | ac2 AC2
+   39   | ac3 AC3
+
+   40 N3: ac2 AC2
+   41   | ac3 AC3
+   42   | ac4 AC4
+
+   43 N4: ac2 AC2
+   44   | ac3 AC3
+   45   | ac4 AC4
+
+   46 N5: %empty
+   47   | ac4 AC4
+
+   48 AC1: c1 C1
+   49    | c2 C2
+   50    | c3 C3
+
+   51 AC2: c1 C1
+   52    | c2 C2
+   53    | c3 C3
+
+   54 AC3: c1 C1
+   55    | c2 C2
+   56    | c3 C3
+
+   57 AC4: %empty
+   58    | c4 C4
+
+   59 C1: %empty
+   60   | c2 C2
+
+   61 C2: %empty
+   62   | c4 C4
+
+   63 C3: %empty
+   64   | a
+
+   65 C4: %empty
+   66   | a
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    a (258) 4 64 66
+    sh1 (259) 5
+    sh2 (260) 6
+    sh3 (261) 7
+    sh4 (262) 8
+    sh5 (263) 9
+    sv1 (264) 10 13 15
+    sv2 (265) 11 14 16
+    sv3 (266) 12 17 18 21
+    sv4 (267) 19
+    sv5 (268) 20 22
+    n1 (269) 23 26
+    n2 (270) 24 27
+    n3 (271) 25 28
+    n4 (272) 29 31
+    n5 (273) 30 32 34
+    ac1 (274) 35 37
+    ac2 (275) 36 38 40 43
+    ac3 (276) 39 41 44
+    ac4 (277) 42 45 47
+    c1 (278) 48 51 54
+    c2 (279) 49 52 55 60
+    c3 (280) 50 53 56
+    c4 (281) 58 62
+
+
+Nonterminals, with rules where they appear
+
+    $accept (27)
+        on left: 0
+    I (28)
+        on left: 1 2
+        on right: 0
+    S (29)
+        on left: 3 4
+        on right: 2
+    A (30)
+        on left: 5 6 7 8 9
+        on right: 4
+    SH1 (31)
+        on left: 10 11 12
+        on right: 5
+    SH2 (32)
+        on left: 13 14
+        on right: 6
+    SH3 (33)
+        on left: 15 16 17
+        on right: 7
+    SH4 (34)
+        on left: 18 19 20
+        on right: 8
+    SH5 (35)
+        on left: 21 22
+        on right: 9
+    SV1 (36)
+        on left: 23 24 25
+        on right: 10 13 15
+    SV2 (37)
+        on left: 26 27 28
+        on right: 11 14 16
+    SV3 (38)
+        on left: 29 30
+        on right: 12 17 18 21
+    SV4 (39)
+        on left: 31 32
+        on right: 19
+    SV5 (40)
+        on left: 33 34
+        on right: 20 22
+    N1 (41)
+        on left: 35 36
+        on right: 23 26
+    N2 (42)
+        on left: 37 38 39
+        on right: 24 27
+    N3 (43)
+        on left: 40 41 42
+        on right: 25 28
+    N4 (44)
+        on left: 43 44 45
+        on right: 29 31
+    N5 (45)
+        on left: 46 47
+        on right: 30 32 34
+    AC1 (46)
+        on left: 48 49 50
+        on right: 35 37
+    AC2 (47)
+        on left: 51 52 53
+        on right: 36 38 40 43
+    AC3 (48)
+        on left: 54 55 56
+        on right: 39 41 44
+    AC4 (49)
+        on left: 57 58
+        on right: 42 45 47
+    C1 (50)
+        on left: 59 60
+        on right: 48 51 54
+    C2 (51)
+        on left: 61 62
+        on right: 49 52 55 60
+    C3 (52)
+        on left: 63 64
+        on right: 50 53 56
+    C4 (53)
+        on left: 65 66
+        on right: 58 62
+
+
+State 0
+
+    0 $accept: . I $end
+
+    a  shift, and go to state 1
+
+    $end      reduce using rule 1 (I)
+    $end      [reduce using rule 3 (S)]
+    $default  reduce using rule 1 (I)
+
+    I  go to state 2
+    S  go to state 3
+
+
+State 1
+
+    4 S: a . A
+
+    sh1  shift, and go to state 4
+    sh2  shift, and go to state 5
+    sh3  shift, and go to state 6
+    sh4  shift, and go to state 7
+    sh5  shift, and go to state 8
+
+    A  go to state 9
+
+
+State 2
+
+    0 $accept: I . $end
+
+    $end  shift, and go to state 10
+
+
+State 3
+
+    2 I: S .
+
+    $default  reduce using rule 2 (I)
+
+
+State 4
+
+    5 A: sh1 . SH1
+
+    sv1  shift, and go to state 11
+    sv2  shift, and go to state 12
+    sv3  shift, and go to state 13
+
+    SH1  go to state 14
+
+
+State 5
+
+    6 A: sh2 . SH2
+
+    sv1  shift, and go to state 15
+    sv2  shift, and go to state 16
+
+    SH2  go to state 17
+
+
+State 6
+
+    7 A: sh3 . SH3
+
+    sv1  shift, and go to state 18
+    sv2  shift, and go to state 19
+    sv3  shift, and go to state 20
+
+    SH3  go to state 21
+
+
+State 7
+
+    8 A: sh4 . SH4
+
+    sv3  shift, and go to state 22
+    sv4  shift, and go to state 23
+    sv5  shift, and go to state 24
+
+    SH4  go to state 25
+
+
+State 8
+
+    9 A: sh5 . SH5
+
+    sv3  shift, and go to state 26
+    sv5  shift, and go to state 27
+
+    SH5  go to state 28
+
+
+State 9
+
+    4 S: a A .
+
+    $default  reduce using rule 4 (S)
+
+
+State 10
+
+    0 $accept: I $end .
+
+    $default  accept
+
+
+State 11
+
+   10 SH1: sv1 . SV1
+
+    n1  shift, and go to state 29
+    n2  shift, and go to state 30
+    n3  shift, and go to state 31
+
+    SV1  go to state 32
+
+
+State 12
+
+   11 SH1: sv2 . SV2
+
+    n1  shift, and go to state 33
+    n2  shift, and go to state 34
+    n3  shift, and go to state 35
+
+    SV2  go to state 36
+
+
+State 13
+
+   12 SH1: sv3 . SV3
+
+    n4  shift, and go to state 37
+    n5  shift, and go to state 38
+
+    SV3  go to state 39
+
+
+State 14
+
+    5 A: sh1 SH1 .
+
+    $default  reduce using rule 5 (A)
+
+
+State 15
+
+   13 SH2: sv1 . SV1
+
+    n1  shift, and go to state 29
+    n2  shift, and go to state 30
+    n3  shift, and go to state 31
+
+    SV1  go to state 40
+
+
+State 16
+
+   14 SH2: sv2 . SV2
+
+    n1  shift, and go to state 33
+    n2  shift, and go to state 34
+    n3  shift, and go to state 35
+
+    SV2  go to state 41
+
+
+State 17
+
+    6 A: sh2 SH2 .
+
+    $default  reduce using rule 6 (A)
+
+
+State 18
+
+   15 SH3: sv1 . SV1
+
+    n1  shift, and go to state 29
+    n2  shift, and go to state 30
+    n3  shift, and go to state 31
+
+    SV1  go to state 42
+
+
+State 19
+
+   16 SH3: sv2 . SV2
+
+    n1  shift, and go to state 33
+    n2  shift, and go to state 34
+    n3  shift, and go to state 35
+
+    SV2  go to state 43
+
+
+State 20
+
+   17 SH3: sv3 . SV3
+
+    n4  shift, and go to state 37
+    n5  shift, and go to state 38
+
+    SV3  go to state 44
+
+
+State 21
+
+    7 A: sh3 SH3 .
+
+    $default  reduce using rule 7 (A)
+
+
+State 22
+
+   18 SH4: sv3 . SV3
+
+    n4  shift, and go to state 37
+    n5  shift, and go to state 38
+
+    SV3  go to state 45
+
+
+State 23
+
+   19 SH4: sv4 . SV4
+
+    n4  shift, and go to state 46
+    n5  shift, and go to state 47
+
+    SV4  go to state 48
+
+
+State 24
+
+   20 SH4: sv5 . SV5
+
+    n5  shift, and go to state 49
+
+    $default  reduce using rule 33 (SV5)
+
+    SV5  go to state 50
+
+
+State 25
+
+    8 A: sh4 SH4 .
+
+    $default  reduce using rule 8 (A)
+
+
+State 26
+
+   21 SH5: sv3 . SV3
+
+    n4  shift, and go to state 37
+    n5  shift, and go to state 38
+
+    SV3  go to state 51
+
+
+State 27
+
+   22 SH5: sv5 . SV5
+
+    n5  shift, and go to state 49
+
+    $default  reduce using rule 33 (SV5)
+
+    SV5  go to state 52
+
+
+State 28
+
+    9 A: sh5 SH5 .
+
+    $default  reduce using rule 9 (A)
+
+
+State 29
+
+   23 SV1: n1 . N1
+
+    ac1  shift, and go to state 53
+    ac2  shift, and go to state 54
+
+    N1  go to state 55
+
+
+State 30
+
+   24 SV1: n2 . N2
+
+    ac1  shift, and go to state 56
+    ac2  shift, and go to state 57
+    ac3  shift, and go to state 58
+
+    N2  go to state 59
+
+
+State 31
+
+   25 SV1: n3 . N3
+
+    ac2  shift, and go to state 60
+    ac3  shift, and go to state 61
+    ac4  shift, and go to state 62
+
+    N3  go to state 63
+
+
+State 32
+
+   10 SH1: sv1 SV1 .
+
+    $default  reduce using rule 10 (SH1)
+
+
+State 33
+
+   26 SV2: n1 . N1
+
+    ac1  shift, and go to state 53
+    ac2  shift, and go to state 54
+
+    N1  go to state 64
+
+
+State 34
+
+   27 SV2: n2 . N2
+
+    ac1  shift, and go to state 56
+    ac2  shift, and go to state 57
+    ac3  shift, and go to state 58
+
+    N2  go to state 65
+
+
+State 35
+
+   28 SV2: n3 . N3
+
+    ac2  shift, and go to state 60
+    ac3  shift, and go to state 61
+    ac4  shift, and go to state 62
+
+    N3  go to state 66
+
+
+State 36
+
+   11 SH1: sv2 SV2 .
+
+    $default  reduce using rule 11 (SH1)
+
+
+State 37
+
+   29 SV3: n4 . N4
+
+    ac2  shift, and go to state 67
+    ac3  shift, and go to state 68
+    ac4  shift, and go to state 69
+
+    N4  go to state 70
+
+
+State 38
+
+   30 SV3: n5 . N5
+
+    ac4  shift, and go to state 71
+
+    $default  reduce using rule 46 (N5)
+
+    N5  go to state 72
+
+
+State 39
+
+   12 SH1: sv3 SV3 .
+
+    $default  reduce using rule 12 (SH1)
+
+
+State 40
+
+   13 SH2: sv1 SV1 .
+
+    $default  reduce using rule 13 (SH2)
+
+
+State 41
+
+   14 SH2: sv2 SV2 .
+
+    $default  reduce using rule 14 (SH2)
+
+
+State 42
+
+   15 SH3: sv1 SV1 .
+
+    $default  reduce using rule 15 (SH3)
+
+
+State 43
+
+   16 SH3: sv2 SV2 .
+
+    $default  reduce using rule 16 (SH3)
+
+
+State 44
+
+   17 SH3: sv3 SV3 .
+
+    $default  reduce using rule 17 (SH3)
+
+
+State 45
+
+   18 SH4: sv3 SV3 .
+
+    $default  reduce using rule 18 (SH4)
+
+
+State 46
+
+   31 SV4: n4 . N4
+
+    ac2  shift, and go to state 67
+    ac3  shift, and go to state 68
+    ac4  shift, and go to state 69
+
+    N4  go to state 73
+
+
+State 47
+
+   32 SV4: n5 . N5
+
+    ac4  shift, and go to state 71
+
+    $default  reduce using rule 46 (N5)
+
+    N5  go to state 74
+
+
+State 48
+
+   19 SH4: sv4 SV4 .
+
+    $default  reduce using rule 19 (SH4)
+
+
+State 49
+
+   34 SV5: n5 . N5
+
+    ac4  shift, and go to state 71
+
+    $default  reduce using rule 46 (N5)
+
+    N5  go to state 75
+
+
+State 50
+
+   20 SH4: sv5 SV5 .
+
+    $default  reduce using rule 20 (SH4)
+
+
+State 51
+
+   21 SH5: sv3 SV3 .
+
+    $default  reduce using rule 21 (SH5)
+
+
+State 52
+
+   22 SH5: sv5 SV5 .
+
+    $default  reduce using rule 22 (SH5)
+
+
+State 53
+
+   35 N1: ac1 . AC1
+
+    c1  shift, and go to state 76
+    c2  shift, and go to state 77
+    c3  shift, and go to state 78
+
+    AC1  go to state 79
+
+
+State 54
+
+   36 N1: ac2 . AC2
+
+    c1  shift, and go to state 80
+    c2  shift, and go to state 81
+    c3  shift, and go to state 82
+
+    AC2  go to state 83
+
+
+State 55
+
+   23 SV1: n1 N1 .
+
+    $default  reduce using rule 23 (SV1)
+
+
+State 56
+
+   37 N2: ac1 . AC1
+
+    c1  shift, and go to state 76
+    c2  shift, and go to state 77
+    c3  shift, and go to state 78
+
+    AC1  go to state 84
+
+
+State 57
+
+   38 N2: ac2 . AC2
+
+    c1  shift, and go to state 80
+    c2  shift, and go to state 81
+    c3  shift, and go to state 82
+
+    AC2  go to state 85
+
+
+State 58
+
+   39 N2: ac3 . AC3
+
+    c1  shift, and go to state 86
+    c2  shift, and go to state 87
+    c3  shift, and go to state 88
+
+    AC3  go to state 89
+
+
+State 59
+
+   24 SV1: n2 N2 .
+
+    $default  reduce using rule 24 (SV1)
+
+
+State 60
+
+   40 N3: ac2 . AC2
+
+    c1  shift, and go to state 80
+    c2  shift, and go to state 81
+    c3  shift, and go to state 82
+
+    AC2  go to state 90
+
+
+State 61
+
+   41 N3: ac3 . AC3
+
+    c1  shift, and go to state 86
+    c2  shift, and go to state 87
+    c3  shift, and go to state 88
+
+    AC3  go to state 91
+
+
+State 62
+
+   42 N3: ac4 . AC4
+
+    c4  shift, and go to state 92
+
+    $default  reduce using rule 57 (AC4)
+
+    AC4  go to state 93
+
+
+State 63
+
+   25 SV1: n3 N3 .
+
+    $default  reduce using rule 25 (SV1)
+
+
+State 64
+
+   26 SV2: n1 N1 .
+
+    $default  reduce using rule 26 (SV2)
+
+
+State 65
+
+   27 SV2: n2 N2 .
+
+    $default  reduce using rule 27 (SV2)
+
+
+State 66
+
+   28 SV2: n3 N3 .
+
+    $default  reduce using rule 28 (SV2)
+
+
+State 67
+
+   43 N4: ac2 . AC2
+
+    c1  shift, and go to state 80
+    c2  shift, and go to state 81
+    c3  shift, and go to state 82
+
+    AC2  go to state 94
+
+
+State 68
+
+   44 N4: ac3 . AC3
+
+    c1  shift, and go to state 86
+    c2  shift, and go to state 87
+    c3  shift, and go to state 88
+
+    AC3  go to state 95
+
+
+State 69
+
+   45 N4: ac4 . AC4
+
+    c4  shift, and go to state 92
+
+    $default  reduce using rule 57 (AC4)
+
+    AC4  go to state 96
+
+
+State 70
+
+   29 SV3: n4 N4 .
+
+    $default  reduce using rule 29 (SV3)
+
+
+State 71
+
+   47 N5: ac4 . AC4
+
+    c4  shift, and go to state 92
+
+    $default  reduce using rule 57 (AC4)
+
+    AC4  go to state 97
+
+
+State 72
+
+   30 SV3: n5 N5 .
+
+    $default  reduce using rule 30 (SV3)
+
+
+State 73
+
+   31 SV4: n4 N4 .
+
+    $default  reduce using rule 31 (SV4)
+
+
+State 74
+
+   32 SV4: n5 N5 .
+
+    $default  reduce using rule 32 (SV4)
+
+
+State 75
+
+   34 SV5: n5 N5 .
+
+    $default  reduce using rule 34 (SV5)
+
+
+State 76
+
+   48 AC1: c1 . C1
+
+    c2  shift, and go to state 98
+
+    $default  reduce using rule 59 (C1)
+
+    C1  go to state 99
+
+
+State 77
+
+   49 AC1: c2 . C2
+
+    c4  shift, and go to state 100
+
+    $default  reduce using rule 61 (C2)
+
+    C2  go to state 101
+
+
+State 78
+
+   50 AC1: c3 . C3
+
+    a  shift, and go to state 102
+
+    $default  reduce using rule 63 (C3)
+
+    C3  go to state 103
+
+
+State 79
+
+   35 N1: ac1 AC1 .
+
+    $default  reduce using rule 35 (N1)
+
+
+State 80
+
+   51 AC2: c1 . C1
+
+    c2  shift, and go to state 98
+
+    $default  reduce using rule 59 (C1)
+
+    C1  go to state 104
+
+
+State 81
+
+   52 AC2: c2 . C2
+
+    c4  shift, and go to state 100
+
+    $default  reduce using rule 61 (C2)
+
+    C2  go to state 105
+
+
+State 82
+
+   53 AC2: c3 . C3
+
+    a  shift, and go to state 102
+
+    $default  reduce using rule 63 (C3)
+
+    C3  go to state 106
+
+
+State 83
+
+   36 N1: ac2 AC2 .
+
+    $default  reduce using rule 36 (N1)
+
+
+State 84
+
+   37 N2: ac1 AC1 .
+
+    $default  reduce using rule 37 (N2)
+
+
+State 85
+
+   38 N2: ac2 AC2 .
+
+    $default  reduce using rule 38 (N2)
+
+
+State 86
+
+   54 AC3: c1 . C1
+
+    c2  shift, and go to state 98
+
+    $default  reduce using rule 59 (C1)
+
+    C1  go to state 107
+
+
+State 87
+
+   55 AC3: c2 . C2
+
+    c4  shift, and go to state 100
+
+    $default  reduce using rule 61 (C2)
+
+    C2  go to state 108
+
+
+State 88
+
+   56 AC3: c3 . C3
+
+    a  shift, and go to state 102
+
+    $default  reduce using rule 63 (C3)
+
+    C3  go to state 109
+
+
+State 89
+
+   39 N2: ac3 AC3 .
+
+    $default  reduce using rule 39 (N2)
+
+
+State 90
+
+   40 N3: ac2 AC2 .
+
+    $default  reduce using rule 40 (N3)
+
+
+State 91
+
+   41 N3: ac3 AC3 .
+
+    $default  reduce using rule 41 (N3)
+
+
+State 92
+
+   58 AC4: c4 . C4
+
+    a  shift, and go to state 110
+
+    $default  reduce using rule 65 (C4)
+
+    C4  go to state 111
+
+
+State 93
+
+   42 N3: ac4 AC4 .
+
+    $default  reduce using rule 42 (N3)
+
+
+State 94
+
+   43 N4: ac2 AC2 .
+
+    $default  reduce using rule 43 (N4)
+
+
+State 95
+
+   44 N4: ac3 AC3 .
+
+    $default  reduce using rule 44 (N4)
+
+
+State 96
+
+   45 N4: ac4 AC4 .
+
+    $default  reduce using rule 45 (N4)
+
+
+State 97
+
+   47 N5: ac4 AC4 .
+
+    $default  reduce using rule 47 (N5)
+
+
+State 98
+
+   60 C1: c2 . C2
+
+    c4  shift, and go to state 100
+
+    $default  reduce using rule 61 (C2)
+
+    C2  go to state 112
+
+
+State 99
+
+   48 AC1: c1 C1 .
+
+    $default  reduce using rule 48 (AC1)
+
+
+State 100
+
+   62 C2: c4 . C4
+
+    a  shift, and go to state 110
+
+    $default  reduce using rule 65 (C4)
+
+    C4  go to state 113
+
+
+State 101
+
+   49 AC1: c2 C2 .
+
+    $default  reduce using rule 49 (AC1)
+
+
+State 102
+
+   64 C3: a .
+
+    $default  reduce using rule 64 (C3)
+
+
+State 103
+
+   50 AC1: c3 C3 .
+
+    $default  reduce using rule 50 (AC1)
+
+
+State 104
+
+   51 AC2: c1 C1 .
+
+    $default  reduce using rule 51 (AC2)
+
+
+State 105
+
+   52 AC2: c2 C2 .
+
+    $default  reduce using rule 52 (AC2)
+
+
+State 106
+
+   53 AC2: c3 C3 .
+
+    $default  reduce using rule 53 (AC2)
+
+
+State 107
+
+   54 AC3: c1 C1 .
+
+    $default  reduce using rule 54 (AC3)
+
+
+State 108
+
+   55 AC3: c2 C2 .
+
+    $default  reduce using rule 55 (AC3)
+
+
+State 109
+
+   56 AC3: c3 C3 .
+
+    $default  reduce using rule 56 (AC3)
+
+
+State 110
+
+   66 C4: a .
+
+    $default  reduce using rule 66 (C4)
+
+
+State 111
+
+   58 AC4: c4 C4 .
+
+    $default  reduce using rule 58 (AC4)
+
+
+State 112
+
+   60 C1: c2 C2 .
+
+    $default  reduce using rule 60 (C1)
+
+
+State 113
+
+   62 C2: c4 C4 .
+
+    $default  reduce using rule 62 (C2)
