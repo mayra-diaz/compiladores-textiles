@@ -213,7 +213,7 @@ result_t Parser::analyze_lexeme(string_t input) {
             acceptance += ": Syntax error";
     } else
         acceptance = error ? "ACCEPTED WITH ERRORS, Lexical Error" : "ACCEPTED";
-    if (ip != tokens.size())
+    if (ip != tokens.size()-1)
         acceptance += ", unnecessary tokens";
     std::cout << "\t\t\t\t\t\t\t" << acceptance << "\n\n";
     return result_t{fatal_error, acceptance};
