@@ -6,7 +6,7 @@
 
 struct TOKEN {
     enum Type {
-        A, SH, SV, N, AC, C, ERROR, $
+        A, SH, SV, N, AC, C, ERROR, $, FATAL_ERROR
     };
     Type type;
     std::string id;
@@ -14,7 +14,7 @@ struct TOKEN {
 
     TOKEN(Type type, std::string id);
     TOKEN(Type type, std::string id, std::string e);
-    std::ostream& operator << (std::ostream& os);
+    friend std::ostream& operator << (std::ostream& os, const TOKEN& token);
 
 private:
     std::string get_description() const;

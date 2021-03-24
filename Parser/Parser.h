@@ -7,8 +7,9 @@
 #include "Lexer.h"
 #include "../CFGHandler/CFGHandler.h"
 
+using string_t = std::string;
 using Table_t = std::vector<std::vector<Production_t>>;
-using result_t = std::pair<bool, std::string>;
+using result_t = std::pair<bool, string_t>;
 
 class Parser {
     CFGHandler handler;
@@ -28,10 +29,10 @@ class Parser {
     void initialize();
 
 public:
-    Parser(std::string grammari, std::string terminalsi, std::string non_terminalsi, std::string start);
+    Parser(string_t grammari, string_t terminalsi, string_t non_terminalsi, string_t start);
 
-    void analyze_string(const std::string &w);
-    result_t lexeme(std::string input);
+    void analyze_string(const string_t&w);
+    result_t analyze_lexeme(string_t input);
 
     void print_grammar_info();
     void print_LL_table();

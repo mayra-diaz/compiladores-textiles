@@ -18,7 +18,7 @@ Lexer::Lexer(std::string input) {
                         ++i;
                 }
             } else {
-                tokens.push_back(TOKEN{TOKEN::Type::A, 0});
+                tokens.push_back(TOKEN{TOKEN::Type::A, "a"});
                 ++phases;
             }
         } else if (input[i] == 'S') {
@@ -40,7 +40,7 @@ Lexer::Lexer(std::string input) {
         } else if (input[i] == 'N') {
             bool isd = std::isdigit(input[++i]);
             if (isd && input[i] - '0' < 6 && input[i] - '0' > 0) {
-                tokens.push_back(TOKEN{TOKEN::Type::N, "N" + std::string(1, input[i++])});
+                tokens.push_back(TOKEN{TOKEN::Type::N, "n" + std::string(1, input[i++])});
                 ++phases;
             }
             else {
@@ -51,7 +51,7 @@ Lexer::Lexer(std::string input) {
         } else if (input[i] == 'C') {
             bool isd = std::isdigit(input[++i]);
             if (isd && input[i] - '0' < 6 && input[i] - '0' > 0) {
-                tokens.push_back(TOKEN{TOKEN::Type::C, "C" + std::string(1, input[i++])});
+                tokens.push_back(TOKEN{TOKEN::Type::C, "c" + std::string(1, input[i++])});
                 ++phases;
             }
             else {
@@ -65,7 +65,7 @@ Lexer::Lexer(std::string input) {
         }
     }
     if (phases > 5){
-        tokens.insert(tokens.begin(), TOKEN{TOKEN::Type::ERROR, "ERROR", "More than 5 phases."});
+        tokens.insert(tokens.begin(), TOKEN{TOKEN::Type::FATAL_ERROR, "ERROR", "More than 5 phases."});
     }
 }
 

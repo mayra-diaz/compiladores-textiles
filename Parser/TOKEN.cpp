@@ -24,7 +24,7 @@ std::string TOKEN::get_description() const{
     }
 }
 
-std::ostream& TOKEN::operator<<(std::ostream& os) {
-    os << id << ": " << description << '\n';
+std::ostream& operator<<(std::ostream& os, const TOKEN& token) {
+    os << token.id << ": " << token.description << '\n';
     return os;
 }
