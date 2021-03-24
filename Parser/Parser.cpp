@@ -82,8 +82,8 @@ void print_input(std::vector<string_t> input, int ip) {
 }
 
 void print_input(VToken_t input, int ip) {
-    for (auto& token: input){
-        std::cout << token.id << ' ';
+    for (int i = ip; i < input.size(); ++i) {
+        std::cout << input[i].id << ' ';
     }
 }
 
@@ -148,7 +148,7 @@ result_t Parser::analyze_lexeme(string_t input) {
     std::stack<string_t> stack;
     string_t X, a;
     bool fatal_error = tokens[0].type == TOKEN::Type::FATAL_ERROR, error= false;
-    int ip = error ? 1 : 0;
+    int ip = fatal_error ? 1 : 0;
     tokens.emplace_back(TOKEN::Type::$, "$", "ACCEPTED");
     stack.push("$");
     stack.push(handler.initial);
@@ -164,8 +164,13 @@ result_t Parser::analyze_lexeme(string_t input) {
         std::cout << "\t";
         a = tokens[ip].id;
         if (tokens[ip].type == TOKEN::Type::ERROR){
-            std::cout << "extraer ( " << tokens[ip].description << " )\n";
+            std::cout << "error ( " << tokens[ip].description << " )\n";
             error = true;
+            ++ip;
+        }
+        else if (tokens[ip].type == TOKEN::Type::FATAL_ERROR){
+            std::cout << "explorar ( " << tokens[ip].description << " )\n";
+            fatal_error = true;
             ++ip;
         }
         else if (X == a) {
@@ -181,27 +186,32 @@ result_t Parser::analyze_lexeme(string_t input) {
             }
             else {
                 ip++;
-                error = true;
+                fatal_error = true;
                 std::cout << "explorar ( error )\n";
             }
-        } else {
+        } else if (!table[nter_int[X]][ter_int[a]].empty()) {
             auto rule = table[nter_int[X]][ter_int[a]];
             stack.pop();
-            for (unsigned int i = rule.size() - 1; i >= 0; --i)
+            for (int i = rule.size() - 1; i >= 0; --i)
                 stack.push(rule[i]);
             std::cout << X << " --> ";
-            for (auto & i : rule)
-                std::cout << i << " ";
+            for (int i = 0; i < rule.size(); ++i)
+                std::cout << rule[i] << " ";
             std::cout << "\n";
         }
         X = stack.top();
     }
     std::cout << "$\t\t\t$\n";
     string_t acceptance;
-    if (fatal_error)
-        acceptance =  "REJECTED";
+    if (fatal_error) {
+        acceptance = "REJECTED";
+        if (tokens[0].type == TOKEN::Type::FATAL_ERROR)
+            acceptance += ": " + tokens[0].description;
+        else
+            acceptance += ": Syntax error";
+    }
     else
-        acceptance = error ? "ACCEPTED WITH ERRORS" : "ACCEPTED";
+        acceptance = error ? "ACCEPTED WITH ERRORS, Lexical Error" : "ACCEPTED";
     std::cout << "\t\t" << acceptance;
     return result_t {fatal_error, acceptance};
 }

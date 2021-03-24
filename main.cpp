@@ -16,6 +16,13 @@ int main() {
     std::string terminals = "a sh1 sh2 sh3 sh4 sh5 sv1 sv2 sv3 sv4 sv5 n1 n2 n3 n4 n5 ac1 ac2 ac3 ac4 c1 c2 c3 c4";
     std::string non_terminals = "S A SH1 SH2 SH3 SH4 SH5 SV1 SV2 SV3 SV4 SV5 N1 N2 N3 N4 N5 AC1 AC2 AC3 AC4 C1 C2 C3 C4";
     Parser parser(grammar_s, terminals, non_terminals, "S");
-    parser.analyze_lexeme("a");
+    // "A Sh1 Sv3 N5 Ac4 C4 A"
+    // "A #Sh1 Sv3 N5 Ac4 C4 A"
+    // "A SSh1 Sv3 N5 Ac4 C4 A"
+    // A 7Sh1 Sv3 N5 Ac4 C4 A
+    // "A Sh1 Sv1 N1 Ac1 C1 C2 C4 A"
+    std::string lexeme;
+    getline(std::cin, lexeme);
+    parser.analyze_lexeme(lexeme);
     return 0;
 }

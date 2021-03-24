@@ -3,6 +3,7 @@
 Lexer::Lexer(std::string input) {
     int i = 0, phases=0;
     while (i < input.size()) {
+        std::string id;
         if (input[i] == ' ')
             ++i;
         if (input[i] == 'A') {
@@ -13,30 +14,27 @@ Lexer::Lexer(std::string input) {
                     ++phases;
                 }
                 else {
-                    tokens.push_back(TOKEN{TOKEN::Type::ERROR, "ERROR", "Invalid phase"});
-                    if (isd)
-                        ++i;
+                    id = isd ? "Ac" + std::string(1, input[i++]) : "Ac";
+                    tokens.push_back(TOKEN{TOKEN::Type::ERROR, id, "Invalid phase"});
                 }
             } else {
                 tokens.push_back(TOKEN{TOKEN::Type::A, "a"});
-                ++phases;
             }
         } else if (input[i] == 'S') {
             if (input[++i] == 'h' || input[i] == 'v') {
                 auto type = input[i] == 'h' ? TOKEN::Type::SH : TOKEN::Type::SV;
-                auto id = type == TOKEN::Type::SH ? "sh" + std::string(1, input[i++]) : "sv" + std::string(1, input[i++]);
-                bool isd = std::isdigit(input[++i]);
-                if (isd && input[i] - '0' < 6 && input[i] - '0' > 0) {
+                id = type == TOKEN::Type::SH ? "sh" + std::string(1, input[++i]) : "sv" + std::string(1, input[++i]);
+                bool isd = std::isdigit(input[i]);
+                if (isd && input[i] - '0' < 6 && input[i++] - '0' > 0) {
                     tokens.push_back(TOKEN{type, id});
                     ++phases;
                 }
                 else {
-                    tokens.push_back(TOKEN{TOKEN::Type::ERROR, "ERROR", "Invalid phase"});
-                    if (isd)
-                        ++i;
+                    id = isd ? "S" + std::string(1, input[i-1]) + std::string(1, input[i++]) : "S" + std::string(1, input[-1]);
+                    tokens.push_back(TOKEN{TOKEN::Type::ERROR, id, "Invalid phase"});
                 }
             } else
-                tokens.push_back(TOKEN{TOKEN::Type::ERROR, "ERROR", "Invalid phase"});
+                tokens.push_back(TOKEN{TOKEN::Type::ERROR, "S", "Invalid phase"});
         } else if (input[i] == 'N') {
             bool isd = std::isdigit(input[++i]);
             if (isd && input[i] - '0' < 6 && input[i] - '0' > 0) {
@@ -44,9 +42,8 @@ Lexer::Lexer(std::string input) {
                 ++phases;
             }
             else {
-                tokens.push_back(TOKEN{TOKEN::Type::ERROR, "ERROR", "Invalid phase"});
-                if (isd)
-                    ++i;
+                id = isd ? "N" + std::string(1, input[i++]) : "N";
+                tokens.push_back(TOKEN{TOKEN::Type::ERROR, id, "Invalid phase"});
             }
         } else if (input[i] == 'C') {
             bool isd = std::isdigit(input[++i]);
@@ -55,13 +52,10 @@ Lexer::Lexer(std::string input) {
                 ++phases;
             }
             else {
-                tokens.push_back(TOKEN{TOKEN::Type::ERROR, "ERROR", "Invalid phase"});
-                if (isd)
-                    ++i;
+                tokens.push_back(TOKEN{TOKEN::Type::ERROR, "C", "Invalid phase"});
             }
         } else {
-            tokens.push_back(TOKEN{TOKEN::Type::ERROR, "ERROR", "Invalid character"});
-            ++i;
+            tokens.push_back(TOKEN{TOKEN::Type::ERROR, std::string(1, input[i++]), "Invalid character"});
         }
     }
     if (phases > 5){
