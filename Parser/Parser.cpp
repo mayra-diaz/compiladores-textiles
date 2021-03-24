@@ -6,7 +6,6 @@ Parser::Parser(std::string grammari, std::string terminalsi, std::string non_ter
         handler(std::move(grammari), std::move(terminalsi), std::move(non_terminalsi), std::move(start)) {
     initialize();
     fill_table_MNT();
-    analyze_string("a sh1 sv3 n5 ac4 c4 a");
     //print_LL_table();
     //handler.print();
 }
@@ -48,27 +47,38 @@ void Parser::fill_table_MNT() {
             }
         }
     }
-    std::cout << "________________________\n";
-    for (int i = 0; i < handler.non_terminals.size(); ++i) {
-        std::cout << i << " ::= " << int_nter[i] << "\n";
-    }
-    for (int i = 0; i < handler.terminals.size(); ++i) {
-        std::cout << i << " = " << int_ter[i] << "\n";
-    }
 }
-std::vector<std::string> split_string(const std::string &w){
+
+std::vector<std::string> split_string(const std::string &w) {
     std::string curr = "";
     std::vector<std::string> split;
     for (int i = 0; i < w.size(); ++i) {
-        if(w[i] == ' ') {
+        if (w[i] == ' ') {
             split.push_back(curr);
             curr = "";
         }
-        if(w[i] != ' ')
+        if (w[i] != ' ')
             curr += w[i];
     }
     split.push_back(curr);
     return split;
+}
+
+void print_stack(std::stack<std::string> stack) {
+    std::stack<std::string> temp;
+    while (!stack.empty()) {
+        temp.push(stack.top());
+        stack.pop();
+    }
+    while (!temp.empty()) {
+        std::cout << temp.top() << " ";
+        temp.pop();
+    }
+}
+
+void print_input(std::vector<std::string> input, int ip) {
+    while (ip < input.size())
+        std::cout << input[ip++] << " ";
 }
 
 void Parser::analyze_string(const std::string &ws) {
@@ -81,24 +91,41 @@ void Parser::analyze_string(const std::string &ws) {
     stack.push("$");
     stack.push(handler.initial);
     X = stack.top();
+
+    std::cout << "STACK\t\t||\t\tINPUT\t\t||\t\tACTION\n";
+    std::cout << "________________________________________________________________________\n";
+
     while (X != "$") {
+        print_stack(stack);
+        std::cout << "\t ";
+        print_input(w, ip);
+        std::cout << "\t";
         a = w[ip];
         if (X == a) {
             stack.pop();
             ip++;
+            std::cout << "matching ( " << a << " )\n";
         } else if (handler.terminals.find(X) != handler.terminals.end()) {
-            throw "TERMINAL ERROR";
+            std::cerr << "TERMINAL ERROR";
+            return;
         } else if (tabla[nter_int[X]][ter_int[a]].empty()) {
-            throw "ERROR NO HAY PRODUCCION";
+            std::cerr << "ERROR NO HAY PRODUCCION";
+            return;
         } else if (!tabla[nter_int[X]][ter_int[a]].empty()) {
             auto rule = tabla[nter_int[X]][ter_int[a]];
             stack.pop();
             for (int i = rule.size() - 1; i >= 0; --i)
                 stack.push(rule[i]);
+            std::cout << X << " --> ";
+            for (int i = 0; i < rule.size(); ++i)
+                std::cout << rule[i] << " ";
+            std::cout << "\n";
         }
         X = stack.top();
 
     }
+    std::cout << "$\t\t\t$\n";
+    std::cout << "\t\tACCEPTED";
 }
 
 result_t Parser::lexeme(std::string input) {
