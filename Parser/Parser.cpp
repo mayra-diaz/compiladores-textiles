@@ -154,14 +154,14 @@ result_t Parser::analyze_lexeme(string_t input) {
     stack.push(handler.initial);
     X = stack.top();
 
-    std::cout << "STACK\t\t||\t\tINPUT\t\t||\t\tACTION\n";
-    std::cout << "________________________________________________________________________\n";
+    std::cout << "STACK\t\t\t\t||\t\t\t\tINPUT\t\t\t\t||\t\t\t\tACTION\n";
+    std::cout << "____________________________________________________________________________________________\n";
 
     while (X != "$") {
         print_stack(stack);
-        std::cout << "\t ";
+        std::cout << "\t\t\t\t";
         print_input(tokens, ip);
-        std::cout << "\t";
+        std::cout << "\t\t\t\t\t\t\t\t";
         a = tokens[ip].id;
         if (tokens[ip].type == TOKEN::Type::ERROR){
             std::cout << "error ( " << tokens[ip].description << " )\n";
@@ -201,7 +201,7 @@ result_t Parser::analyze_lexeme(string_t input) {
         }
         X = stack.top();
     }
-    std::cout << "$\t\t\t$\n";
+    std::cout << "$\t\t\t\t\t$\n";
     string_t acceptance;
     if (fatal_error) {
         acceptance = "REJECTED";
@@ -212,7 +212,7 @@ result_t Parser::analyze_lexeme(string_t input) {
     }
     else
         acceptance = error ? "ACCEPTED WITH ERRORS, Lexical Error" : "ACCEPTED";
-    std::cout << "\t\t" << acceptance << "\n\n";
+    std::cout << "\t\t\t\t\t\t\t" << acceptance << "\n\n";
     return result_t {fatal_error, acceptance};
 }
 
