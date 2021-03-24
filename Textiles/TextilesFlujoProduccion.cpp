@@ -20,32 +20,18 @@ void TextilesFlujoProduccion(){
         switch (option) {
             case 1:{
                 parser.print_grammar_info();
-                break;}
+                break;
+            }
             case 2:{
                 parser.print_LL_table();
-                break;}
+                break;
+            }
             case 3: {
-                std::string lexeme;
-                std::cout << "Para terminar la verificación de flujo ingrese -1 \nIngrese un flujo para analizar: \n";
-                std::cin.ignore();
-                getline(std::cin, lexeme);
-                do {
-                    parser.analyze_lexeme(lexeme);
-                    std::cout << "Para terminar la verificación de flujo ingrese -1 \nIngrese un flujo para analizar: \n";
-                    getline(std::cin, lexeme);
-                } while (lexeme != "-1");
+                analyze(parser, true, "la verificación de flujo");
                 break;
             }
             case 4:{
-                std::string lexeme;
-                std::cout << "Para terminar la verificación léxica ingrese -1 \nIngrese un flujo para analizar: \n";
-                std::cin.ignore();
-                getline(std::cin, lexeme);
-                do {
-                    parser.analyze_tokens(lexeme);
-                    std::cout << "Para terminar la verificación léxica ingrese -1 \nIngrese un flujo para analizar: \n";
-                    getline(std::cin, lexeme);
-                } while (lexeme != "-1");
+                analyze(parser, true, "la verificación léxica");
                 break;
             }
             default:
@@ -80,7 +66,8 @@ void analyze(Parser& parser, bool is_lexeme, std::string message){
     std::cin.ignore();
     getline(std::cin, lexeme);
     do {
-        is_lexeme ? parser.analyze_lexeme(lexeme) : parser.analyze_tokens(lexeme);
+        if (is_lexeme) parser.analyze_lexeme(lexeme);
+        else parser.analyze_tokens(lexeme);
         std::cout << "Para terminar " << message << " ingrese -1 \nIngrese un flujo para analizar: \n";
         getline(std::cin, lexeme);
     } while (lexeme != "-1");
