@@ -212,7 +212,7 @@ result_t Parser::analyze_lexeme(string_t input) {
     }
     else
         acceptance = error ? "ACCEPTED WITH ERRORS, Lexical Error" : "ACCEPTED";
-    std::cout << "\t\t" << acceptance;
+    std::cout << "\t\t" << acceptance << "\n\n";
     return result_t {fatal_error, acceptance};
 }
 
