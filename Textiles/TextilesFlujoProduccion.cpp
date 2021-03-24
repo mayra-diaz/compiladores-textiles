@@ -18,10 +18,12 @@ void TextilesFlujoProduccion(){
     int option = print_menu();
     while (option!=0){
         switch (option) {
-            case 1:
+            case 1:{
                 parser.print_grammar_info();
-            case 2:
+                break;}
+            case 2:{
                 parser.print_LL_table();
+                break;}
             case 3: {
                 std::string lexeme;
                 std::cout << "Para terminar la verificación de flujo ingrese -1 \nIngrese un flujo para analizar: \n";
@@ -32,6 +34,7 @@ void TextilesFlujoProduccion(){
                     std::cout << "Para terminar la verificación de flujo ingrese -1 \nIngrese un flujo para analizar: \n";
                     getline(std::cin, lexeme);
                 } while (lexeme != "-1");
+                break;
             }
             case 4:{
                 std::string lexeme;
@@ -43,6 +46,7 @@ void TextilesFlujoProduccion(){
                     std::cout << "Para terminar la verificación léxica ingrese -1 \nIngrese un flujo para analizar: \n";
                     getline(std::cin, lexeme);
                 } while (lexeme != "-1");
+                break;
             }
             default:
                 break;
