@@ -109,8 +109,16 @@ void Parser::analyze_string(const std::string &ws) {
             std::cerr << "TERMINAL ERROR";
             return;
         } else if (tabla[nter_int[X]][ter_int[a]].empty()) {
-            std::cerr << "ERROR NO HAY PRODUCCION";
-            return;
+            if(a == "$" || handler.Follows.find(a) != handler.Follows.end()) {
+                stack.pop();
+                std::cout << "extraer ( error )\n";
+            }
+            else {
+                ip++;
+                std::cout << "explorar ( error )\n";
+            }
+            //std::cerr << "ERROR NO HAY PRODUCCION";
+            //return;
         } else if (!tabla[nter_int[X]][ter_int[a]].empty()) {
             auto rule = tabla[nter_int[X]][ter_int[a]];
             stack.pop();
