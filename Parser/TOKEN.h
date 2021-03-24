@@ -13,8 +13,10 @@ struct TOKEN {
     std::string description;
 
     TOKEN(Type type, std::string id);
+
     TOKEN(Type type, std::string id, std::string e);
-    friend std::ostream& operator << (std::ostream& os, const TOKEN& token);
+
+    friend std::ostream &operator<<(std::ostream &os, const TOKEN &token);
 
 private:
     std::string get_description() const;

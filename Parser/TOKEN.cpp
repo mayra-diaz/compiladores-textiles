@@ -1,11 +1,12 @@
 #include "TOKEN.h"
 
-TOKEN::TOKEN(Type type, std::string id): type(type), id(id) {
+TOKEN::TOKEN(Type type, std::string id) : type(type), id(id) {
     description = get_description();
 }
-TOKEN::TOKEN(Type type, std::string id, std::string e): type(type), id(id), description(std::move(e)) {}
 
-std::string TOKEN::get_description() const{
+TOKEN::TOKEN(Type type, std::string id, std::string e) : type(type), id(id), description(std::move(e)) {}
+
+std::string TOKEN::get_description() const {
     switch (type) {
         case A:
             return "Almacén";
@@ -24,7 +25,7 @@ std::string TOKEN::get_description() const{
     }
 }
 
-std::ostream& operator<<(std::ostream& os, const TOKEN& token) {
+std::ostream &operator<<(std::ostream &os, const TOKEN &token) {
     os << token.id << ": " << token.description << '\n';
     return os;
 }

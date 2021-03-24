@@ -1,7 +1,7 @@
 #include "Lexer.h"
 
 Lexer::Lexer(std::string input) {
-    int i = 0, phases=0;
+    int i = 0, phases = 0;
     while (i < input.size()) {
         std::string id;
         if (input[i] == ' ')
@@ -12,8 +12,7 @@ Lexer::Lexer(std::string input) {
                 if (isd && input[i] - '0' < 5 && input[i] - '0' > 0) {
                     tokens.push_back(TOKEN{TOKEN::Type::AC, "ac" + std::string(1, input[i++])});
                     ++phases;
-                }
-                else {
+                } else {
                     id = isd ? "Ac" + std::string(1, input[i++]) : "Ac";
                     tokens.push_back(TOKEN{TOKEN::Type::ERROR, id, "Invalid phase"});
                 }
@@ -28,9 +27,9 @@ Lexer::Lexer(std::string input) {
                 if (isd && input[i] - '0' < 6 && input[i++] - '0' > 0) {
                     tokens.push_back(TOKEN{type, id});
                     ++phases;
-                }
-                else {
-                    id = isd ? "S" + std::string(1, input[i-1]) + std::string(1, input[i++]) : "S" + std::string(1, input[-1]);
+                } else {
+                    id = isd ? "S" + std::string(1, input[i - 1]) + std::string(1, input[i++]) : "S" + std::string(1,
+                                                                                                                   input[-1]);
                     tokens.push_back(TOKEN{TOKEN::Type::ERROR, id, "Invalid phase"});
                 }
             } else
@@ -40,8 +39,7 @@ Lexer::Lexer(std::string input) {
             if (isd && input[i] - '0' < 6 && input[i] - '0' > 0) {
                 tokens.push_back(TOKEN{TOKEN::Type::N, "n" + std::string(1, input[i++])});
                 ++phases;
-            }
-            else {
+            } else {
                 id = isd ? "N" + std::string(1, input[i++]) : "N";
                 tokens.push_back(TOKEN{TOKEN::Type::ERROR, id, "Invalid phase"});
             }
@@ -50,15 +48,14 @@ Lexer::Lexer(std::string input) {
             if (isd && input[i] - '0' < 6 && input[i] - '0' > 0) {
                 tokens.push_back(TOKEN{TOKEN::Type::C, "c" + std::string(1, input[i++])});
                 ++phases;
-            }
-            else {
+            } else {
                 tokens.push_back(TOKEN{TOKEN::Type::ERROR, "C", "Invalid phase"});
             }
         } else {
             tokens.push_back(TOKEN{TOKEN::Type::ERROR, std::string(1, input[i++]), "Invalid character"});
         }
     }
-    if (phases > 5){
+    if (phases > 5) {
         tokens.insert(tokens.begin(), TOKEN{TOKEN::Type::FATAL_ERROR, "ERROR", "More than 5 phases."});
     }
 }
