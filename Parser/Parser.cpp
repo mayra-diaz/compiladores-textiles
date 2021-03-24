@@ -114,11 +114,19 @@ void Parser::analyze_string(const std::string &ws) {
         } else if (handler.terminals.find(X) != handler.terminals.end()) {
             std::cerr << "TERMINAL ERROR";
             return;
-        } else if (table[nter_int[X]][ter_int[a]].empty()) {
-            std::cerr << "ERROR NO HAY PRODUCCION";
-            return;
-        } else if (!table[nter_int[X]][ter_int[a]].empty()) {
-            auto rule = table[nter_int[X]][ter_int[a]];
+        } else if (tabla[nter_int[X]][ter_int[a]].empty()) {
+            if(a == "$" || handler.Follows.find(a) != handler.Follows.end()) {
+                stack.pop();
+                std::cout << "extraer ( error )\n";
+            }
+            else {
+                ip++;
+                std::cout << "explorar ( error )\n";
+            }
+            //std::cerr << "ERROR NO HAY PRODUCCION";
+            //return;
+        } else if (!tabla[nter_int[X]][ter_int[a]].empty()) {
+            auto rule = tabla[nter_int[X]][ter_int[a]];
             stack.pop();
             for (int i = rule.size() - 1; i >= 0; --i)
                 stack.push(rule[i]);
