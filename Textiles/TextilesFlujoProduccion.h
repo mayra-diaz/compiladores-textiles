@@ -5,5 +5,6 @@
 
 void TextilesFlujoProduccion();
 int print_menu();
+void analyze(Parser& parser, bool is_lexeme, std::string message);
 
 #endif //COMPILADORES_TEXTILES_TEXTILESFLUJOPRODUCCION_H

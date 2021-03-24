@@ -69,3 +69,15 @@ int print_menu(){
     }
     return option;
 }
+
+void analyze(Parser& parser, bool is_lexeme, std::string message){
+    std::string lexeme;
+    std::cout << "Para terminar " << message << " ingrese -1 \nIngrese un flujo para analizar: \n";
+    std::cin.ignore();
+    getline(std::cin, lexeme);
+    do {
+        is_lexeme ? parser.analyze_lexeme(lexeme) : parser.analyze_tokens(lexeme);
+        std::cout << "Para terminar " << message << " ingrese -1 \nIngrese un flujo para analizar: \n";
+        getline(std::cin, lexeme);
+    } while (lexeme != "-1");
+}
