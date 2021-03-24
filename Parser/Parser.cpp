@@ -6,8 +6,6 @@ Parser::Parser(string_t grammari, string_t terminalsi, string_t non_terminalsi, 
         handler(std::move(grammari), std::move(terminalsi), std::move(non_terminalsi), std::move(start)) {
     initialize();
     fill_table_MNT();
-    //print_LL_table();
-    //handler.print();
 }
 
 
@@ -40,10 +38,7 @@ void Parser::fill_table_MNT() {
             auto first_conj = get_First(production[0]);
             for (const auto &first : first_conj) {//llegada es un token
                 //agregar en M[A,a] la regla A --> alpha
-                int x = nter_int[nter.first];
-                int y = ter_int[first];
-                std::vector<string_t> copia = production;
-                table[x][y] = copia;
+                table[nter_int[nter.first]][ter_int[first]] = production;
             }
         }
     }
@@ -213,7 +208,7 @@ result_t Parser::analyze_lexeme(string_t input) {
             acceptance += ": Syntax error";
     } else
         acceptance = error ? "ACCEPTED WITH ERRORS, Lexical Error" : "ACCEPTED";
-    if (ip != tokens.size()-1)
+    if (ip != tokens.size() - 1)
         acceptance += ", unnecessary tokens";
     std::cout << "\t\t\t\t\t\t\t" << acceptance << "\n\n";
     return result_t{fatal_error, acceptance};
