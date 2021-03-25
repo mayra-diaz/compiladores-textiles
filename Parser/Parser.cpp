@@ -38,8 +38,7 @@ void Parser::fill_table_MNT() {
             auto first_conj = get_First(production[0]);
             for (const auto &first : first_conj) {//llegada es un token
                 //agregar en M[A,a] la regla A --> alpha
-                std::vector<string_t> copia = production;
-                table[nter_int[nter.first]][ter_int[first]] = copia;
+                table[nter_int[nter.first]][ter_int[first]] = production;
             }
         }
     }
@@ -178,7 +177,7 @@ result_t Parser::analyze_lexeme(string_t input) {
             ip++;
             std::cout << "matching ( " << a << " )\n";
         } else if (table[nter_int[X]][ter_int[a]].empty()) {
-            if (a == "$" || handler.Follows.find(a) != handler.Follows.end()) {
+            if (a == "$" || handler.Follows[X].find(a) != handler.Follows[X].end()) {
                 stack.pop();
                 fatal_error = true;
                 std::cout << "extraer ( error )\n";
@@ -209,7 +208,7 @@ result_t Parser::analyze_lexeme(string_t input) {
             acceptance += ": Syntax error";
     } else
         acceptance = error ? "ACCEPTED WITH ERRORS, Lexical Error" : "ACCEPTED";
-    if (ip != tokens.size()-1)
+    if (ip != tokens.size() - 1)
         acceptance += ", unnecessary tokens";
     std::cout << "\t\t\t\t\t\t\t" << acceptance << "\n\n";
     return result_t{fatal_error, acceptance};
