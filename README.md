@@ -1,6 +1,6 @@
 # Parser para textiles
 
-> **Curso:** compiladores \
+> **Curso:** Compiladores \
 > **Integrantes:**
 > - Mayra Díaz Tramontana 201910147
 > - Joaquín Elías Ramírez Gutiérrez 201910277
