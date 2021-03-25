@@ -2,8 +2,8 @@
 
 > **Curso:** Compiladores \
 > **Integrantes:**
-> - Mayra Díaz Tramontana 201910147
-> - Joaquín Elías Ramírez Gutiérrez 201910277
+> - [Mayra Díaz Tramontana](https://www.linkedin.com/in/mayra-d%C3%ADaz-tramontana-7018701a4/) 201910147
+> - [Joaquín Elías Ramírez Gutiérrez](https://www.linkedin.com/in/joaquin-ramirezg/) 201910277
 > 
 > Proyecto sobre el flujo de producción de una fábrica de textiles.
 
