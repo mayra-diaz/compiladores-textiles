@@ -3,7 +3,7 @@
 > **Curso:** compiladores \
 > **Integrantes:**
 > - Mayra Díaz Tramontana 201910147
-> - Joaquín Elías Ramírez Gutuiérrez 201910277\
+> - Joaquín Elías Ramírez Gutiérrez 201910277
 > 
 > Proyecto sobre el flujo de producción de una fábrica de textiles.
 
