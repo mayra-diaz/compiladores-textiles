@@ -206,11 +206,17 @@ result_t Parser::analyze_lexeme(string_t input) {
         acceptance = "REJECTED: " + tokens[0].description;
     else if (syntax_error)
         acceptance = "REJECTED: Syntax error";
-    else
-        acceptance = lex_error ? "ACCEPTED WITH ERRORS, Lexical Error" : "ACCEPTED";
+    else {
+        std::string w;
+        for (int i = 0; i < tokens.size()-1; ++i) {
+            if (tokens[i].type != TOKEN::Type::ERROR && tokens[i].type != TOKEN::Type::FATAL_ERROR)
+                w += tokens[i].id + " ";
+        }
+        acceptance = lex_error ? "ACCEPTED WITH ERRORS, Lexical Error \n\tACCEPTED VERSION:\t" + w : "ACCEPTED";
+    }
     if (ip != tokens.size() - 1)
         acceptance += ", unnecessary tokens";
-    std::cout << "\t\t\t\t\t\t\t" << acceptance << "\n\n";
+    std::cout << "\t" << acceptance << "\n\n";
     return result_t{fatal_error, acceptance};
 }
 
