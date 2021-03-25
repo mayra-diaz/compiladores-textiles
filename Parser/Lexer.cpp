@@ -56,7 +56,7 @@ Lexer::Lexer(std::string input) {
         }
     }
     if (phases > 5) {
-        tokens.insert(tokens.begin(), TOKEN{TOKEN::Type::FATAL_ERROR, "ERROR", "More than 5 phases."});
+        tokens.insert(tokens.begin(), TOKEN{TOKEN::Type::FATAL_ERROR, "ERROR", "More than 5 phases"});
     }
 }
 

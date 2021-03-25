@@ -4,4 +4,7 @@ A #Sh1 Sv3 N5 Ac4 C4 A
 A SSh1 Sv3 N5 Ac4 C4 A
 A 7Sh1 Sv3 N5 Ac4 C4 A
 A Sh1 Sv1 N1 Ac1 C1 C2 C4 A
+A Sh1 Sv2 N2 Ac2 C2 C4 A
+A Sh1 Sv3 N5 Ac4 C2 C4 A
+A Sh1 Sv3 N5 Ac4 C2 A
 #######$$$$$$$$$$(((((((((

@@ -31,7 +31,7 @@ void TextilesFlujoProduccion(){
                 break;
             }
             case 4:{
-                analyze(parser, true, "la verificación léxica");
+                analyze(parser, false, "la verificación léxica");
                 break;
             }
             default:
