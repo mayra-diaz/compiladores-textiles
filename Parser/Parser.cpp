@@ -177,7 +177,7 @@ result_t Parser::analyze_lexeme(string_t input) {
             ip++;
             std::cout << "matching ( " << a << " )\n";
         } else if (table[nter_int[X]][ter_int[a]].empty()) {
-            if (a == "$" || handler.Follows.find(a) != handler.Follows.end()) {
+            if (a == "$" || handler.Follows[X].find(a) != handler.Follows[X].end()) {
                 stack.pop();
                 fatal_error = true;
                 std::cout << "extraer ( error )\n";
