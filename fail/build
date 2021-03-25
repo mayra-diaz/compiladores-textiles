@@ -1,5 +1,0 @@
-rm y.output y.tab.c lex.yy.c
-
-lex textiles.l
-yacc -v -y -d textiles.y
-gcc  y.tab.c -ll
