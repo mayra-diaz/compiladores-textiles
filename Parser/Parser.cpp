@@ -2,8 +2,10 @@
 
 #include <utility>
 
-Parser::Parser(string_t grammari, string_t terminalsi, string_t non_terminalsi, string_t start) :
-        handler(std::move(grammari), std::move(terminalsi), std::move(non_terminalsi), std::move(start)) {
+Parser::Parser(string_t grammari, string_t terminalsi,
+               string_t non_terminalsi, string_t start) :
+        handler(std::move(grammari), std::move(terminalsi),
+                std::move(non_terminalsi), std::move(start)) {
     initialize();
     fill_table_MNT();
 }
